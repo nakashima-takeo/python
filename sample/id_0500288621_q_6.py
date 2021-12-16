@@ -2,10 +2,13 @@ import random
 import math
 
 #####################################
+
+
 class Message():
     """ Define the message on the social network
     """
     msg_id = 0
+
     def __init__(self, user):
         self.mid = Message.msg_id
         Message.msg_id += 1
@@ -13,10 +16,13 @@ class Message():
         self.score = 0
 
 #####################################
+
+
 class User():
     """Define a user
     """
     user_id = 0
+
     def __init__(self, social_network):
         self.social_network = social_network
 
@@ -42,7 +48,7 @@ class User():
 
     def like(self, msg):
         d = math.sqrt((self.taste[0] - msg.user.taste[0])**2
-                    + (self.taste[1] - msg.user.taste[1])**2)
+                      + (self.taste[1] - msg.user.taste[1])**2)
         return d < 0.33
 
     def post(self):
@@ -55,15 +61,19 @@ class User():
         self.social_network.unregister_user(self)
 
     def display_info(self, txt):
-        print("Step {} User {}: {}".format(self.social_network.step, self.uid, txt))
+        print("Step {} User {}: {}".format(
+            self.social_network.step, self.uid, txt))
 
 #####################################
+
+
 class SocialNetwork():
     """Social network simulation
     Random creation of new user
     Random posting of messages by users
     Random reading of messages by users
     """
+
     def __init__(self, max_users, max_msgs):
         self.step = 0
 
@@ -77,11 +87,13 @@ class SocialNetwork():
         """ Create and register a new user with a probability of 0.1
         When called
         """
+        # It is wrong to say that there are more than the maximum number of users.
         if len(self.users) <= self.max_users:
             if random.random() > 0.9:
                 self.users.append(User(self))
 
     def user_posting(self):
+        # It is wrong to say that there are more than the maximum number of messages.
         if len(self.msgs) <= self.max_msgs:
             user = self.get_random_user()
             if user:
@@ -113,7 +125,8 @@ class SocialNetwork():
         self.users.remove(user)
 
     def report(self):
-        print("Step {}: {} users {} msgs".format(self.step, len(self.users), len(self.msgs)))
+        print("Step {}: {} users {} msgs".format(
+            self.step, len(self.users), len(self.msgs)))
 
     def run(self):
         try:
@@ -133,9 +146,11 @@ class SocialNetwork():
         except KeyboardInterrupt:
             print("\nStoping simulation")
 
+
 def main():
     social_network = SocialNetwork(10, 100)
     social_network.run()
+
 
 if __name__ == "__main__":
     main()
