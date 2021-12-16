@@ -22,7 +22,7 @@ class User():
 
         self.uid = User.user_id
         User.user_id += 1
-        
+
         self.taste = random.random(), random.random()
 
         self.satisfaction = 20
@@ -33,7 +33,7 @@ class User():
         self.display_info("reading message {}".format(msg.mid))
         if self.like(msg):
             msg.score += 1
-            self.satisfaction += msg.score 
+            self.satisfaction += msg.score
             self.display_info("liking message {}".format(msg.mid))
         else:
             self.satisfaction -= 1
@@ -43,12 +43,12 @@ class User():
     def like(self, msg):
         d = math.sqrt((self.taste[0] - msg.user.taste[0])**2
          + (self.taste[1] - msg.user.taste[1])**2)
-        return d < 0.33 
+        return d < 0.33
 
     def post(self):
         msg = Message(self)
         self.display_info("posting message {}".format(msg.mid))
-        return msg 
+        return msg
 
     def unregister(self):
         self.display_info("asking to unregister")
@@ -66,7 +66,7 @@ class SocialNetwork():
     """
     def __init__(self, max_users, max_msgs):
         self.step = 0
-        
+
         # Keep track of users and msgs
         self.max_users = max_users
         self.max_msgs = max_msgs
@@ -87,7 +87,7 @@ class SocialNetwork():
             if user:
                 if random.random() > 0.9:
                     self.msgs.append(user.post())
-                
+
     def user_reading(self):
         user = self.get_random_user()
         msg = self.get_random_msg()
@@ -111,15 +111,15 @@ class SocialNetwork():
 
     def unregister_user(self, user):
         self.users.remove(user)
-        
+
     def report(self):
         print("Step {}: {} users {} msgs".format(self.step, len(self.users), len(self.msgs)))
-        
+
     def run(self):
         try:
             while True:
                 self.step += 1
-                
+
                 self.new_user_register()
 
                 for i in range(10):
