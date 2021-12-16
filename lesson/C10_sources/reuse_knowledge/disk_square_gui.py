@@ -9,7 +9,7 @@ class DiskSquare():
         self.edge.set(1.0)
         self.radius = StringVar()
         self.radius.set(1.0)
-        
+
         self.square_area = StringVar()
         self.disk_area = StringVar()
         self.area_difference = StringVar()
@@ -24,21 +24,21 @@ class DiskSquare():
 
         mainframe = Frame(self.root)
         mainframe.pack()
-        
+
         Label(mainframe, text="Square Edge").pack()
         edge_entry = Entry(mainframe, width=7, textvariable=self.edge)
-        edge_entry.pack()   
+        edge_entry.pack()
 
         radius_entry = Entry(mainframe, width=7, textvariable=self.radius)
         Label(mainframe, text="Disk radius").pack()
-        radius_entry.pack()  
+        radius_entry.pack()
 
         Label(mainframe, textvariable=self.square_area).pack()
         Label(mainframe, textvariable=self.disk_area).pack()
         Label(mainframe, textvariable=self.area_difference).pack()
 
         Button(mainframe, text="Compute", command = self.compute)
-        
+
     def compute(self, *args):
         try:
             square_area = float(self.edge.get())**2
@@ -48,7 +48,7 @@ class DiskSquare():
             pass
         self.square_area.set("Square area: {:.3}".format(square_area))
         self.disk_area.set("Disk area: {:.3}".format(disk_area))
-        self.area_difference.set("Square area - Disk area = {:.3}".format(area_difference))        
+        self.area_difference.set("Square area - Disk area = {:.3}".format(area_difference))
 
 def main():
     root = Tk()

@@ -65,13 +65,3 @@ else:
 # Use the float
 print("The square of {} is {}".format(f, f**2))
 
-
-
-
-
-
-    
-
-
-
-

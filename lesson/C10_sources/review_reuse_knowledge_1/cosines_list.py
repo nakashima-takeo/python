@@ -8,7 +8,7 @@ def get_x_list(start, end, step):
     number_steps = int((end - start) / step) + 1
 
     # Fill the values in an empty list
-    x_list = [] 
+    x_list = []
     for i in range(number_steps):
         x_list.append(start + i * step)
     return x_list
@@ -16,7 +16,7 @@ def get_x_list(start, end, step):
 def get_x_list_alt(start, end, step):# Another way of doing it
     """Returns a list from start to end with a step of 0.1
     """
-    x_list = [start] 
+    x_list = [start]
     while x_list[-1] + step < end:
         x_list.append(x_list[-1] + step)
     return x_list

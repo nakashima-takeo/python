@@ -4,11 +4,11 @@
 class MyClass():
     """A simple class example"""
     # define a class variable
-    value = 5            
+    value = 5
 
     # Define a function
     def hello(self):
-        print("Hello!") 
+        print("Hello!")
 
 ##############################################
 # Use the class
@@ -36,7 +36,7 @@ print("type(MyClass) = ", type(MyClass))
 # The attribute of the class object
 print("dir(MyClass) = ", dir(MyClass))
 
-# The instance is an object 
+# The instance is an object
 print("type(a) = ", type(a))
 
 # The attribute of the instance
