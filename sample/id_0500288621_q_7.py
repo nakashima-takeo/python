@@ -33,7 +33,11 @@ class User():
         self.display_info("reading message {}".format(msg.mid))
         if self.like(msg):
             msg.score += 1
-            self.satisfaction += msg.score
+            # 
+            if self == msg.user:
+                self.satisfaction -= 1
+            else:
+                self.satisfaction += msg.score
             self.display_info("liking message {}".format(msg.mid))
         else:
             self.satisfaction -= 1
