@@ -111,6 +111,7 @@ class SocialNetwork():
 
     def unregister_user(self, user):
         self.users.remove(user)
+        self.msgs.remove(user)
 
     def report(self):
         print("Step {}: {} users {} msgs".format(self.step, len(self.users), len(self.msgs)))
