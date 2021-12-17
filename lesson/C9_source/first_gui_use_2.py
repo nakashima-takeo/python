@@ -1,11 +1,11 @@
 from tkinter import Tk, Frame
 from first_gui_4 import FirstGUI
-        
+
 def main():
     root = Tk()
     main_frame = Frame(root)
     main_frame.pack()
-    
+
     frames = []
     first_guis = []
     for i in range(3):

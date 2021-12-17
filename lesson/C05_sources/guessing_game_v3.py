@@ -13,7 +13,7 @@ while not guess == value:
     if guess > value:
         interval_top = guess
     else:
-        interval_bottom = guess    
+        interval_bottom = guess
     guess = (interval_top + interval_bottom) // 2
     number_trials = number_trials + 1
 
