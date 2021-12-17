@@ -77,12 +77,12 @@ class SocialNetwork():
         """ Create and register a new user with a probability of 0.1
         When called
         """
-        if len(self.users) <= self.max_users:
+        if len(self.users) < self.max_users:
             if random.random() > 0.9:
                 self.users.append(User(self))
 
     def user_posting(self):
-        if len(self.msgs) <= self.max_msgs:
+        if len(self.msgs) < self.max_msgs:
             user = self.get_random_user()
             if user:
                 if random.random() > 0.9:
@@ -111,7 +111,7 @@ class SocialNetwork():
 
     def unregister_user(self, user):
         self.users.remove(user)
-        self.msgs.remove(user)
+        # self.msgs.remove(user)
 
     def report(self):
         print("Step {}: {} users {} msgs".format(self.step, len(self.users), len(self.msgs)))

@@ -88,13 +88,13 @@ class SocialNetwork():
         When called
         """
         # It is wrong to say that there are more than the maximum number of users.
-        if len(self.users) <= self.max_users:
+        if len(self.users) < self.max_users:
             if random.random() > 0.9:
                 self.users.append(User(self))
 
     def user_posting(self):
         # It is wrong to say that there are more than the maximum number of messages.
-        if len(self.msgs) <= self.max_msgs:
+        if len(self.msgs) < self.max_msgs:
             user = self.get_random_user()
             if user:
                 if random.random() > 0.9:
