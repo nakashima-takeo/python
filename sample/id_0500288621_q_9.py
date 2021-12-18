@@ -122,9 +122,15 @@ class SocialNetwork():
                 if msg.score > max_score:
                     max_score = msg.score
                     max_msg = msg
-            print("Max score: {} by {}".format(max_score, max_msg.user.uid))
+            print(f"Max score: {max_score} by user{max_msg.user.uid} (messageid: {max_msg.mid})")
+        else:
+            print("No messages")
         # Information about the users satisfaction
-
+        if len(self.users) > 0:
+            for user in self.users:
+                print(f"User {user.uid} satisfaction: {user.satisfaction}")
+        else:
+            print("No users")
     def run(self):
         try:
             while True:

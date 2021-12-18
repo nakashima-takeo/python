@@ -10,8 +10,8 @@ class Message():
         self.mid = Message.msg_id
         Message.msg_id += 1
         self.user = user
-        self.score = 0
-
+        # score starts at 5
+        self.score = 5
 #####################################
 class User():
     """Define a user
@@ -36,6 +36,8 @@ class User():
             self.satisfaction += msg.score
             self.display_info("liking message {}".format(msg.mid))
         else:
+            # if the user does not like the message, the score of the message is decreased by 1
+            msg.score -= 1
             self.satisfaction -= 1
             if self.satisfaction < 0:
                 self.unregister()
@@ -112,6 +114,10 @@ class SocialNetwork():
     def unregister_user(self, user):
         self.users.remove(user)
 
+    # delete message
+    def delete_message(self, msg):
+        self.msgs.remove(msg)
+
     def report(self):
         print("Step {}: {} users {} msgs".format(self.step, len(self.users), len(self.msgs)))
 
@@ -125,6 +131,10 @@ class SocialNetwork():
                 for i in range(10):
                     self.user_posting()
                     self.user_reading()
+                    # if the score of a message is 0, the message is deleted
+                    for msg in self.msgs:
+                        if msg.score == 0:
+                            self.delete_message(msg)
 
                 if self.step % 10 == 0:
                     self.report()
