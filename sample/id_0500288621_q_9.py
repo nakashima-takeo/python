@@ -114,6 +114,16 @@ class SocialNetwork():
 
     def report(self):
         print("Step {}: {} users {} msgs".format(self.step, len(self.users), len(self.msgs)))
+        # Information about the message with the highest score(For example: message id, score, and user id of the author of the message)
+        if len(self.msgs) > 0:
+            max_score = 0
+            max_msg = None
+            for msg in self.msgs:
+                if msg.score > max_score:
+                    max_score = msg.score
+                    max_msg = msg
+            print("Max score: {} by {}".format(max_score, max_msg.user.uid))
+        # Information about the users satisfaction
 
     def run(self):
         try:
