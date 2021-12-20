@@ -1,3 +1,5 @@
+#  two methods for checking if a tuple has an attribute
+#  use code introspection functions dir and hasattr.
 def method_0():
     empty_tuple = ()
     empty_list = []
@@ -8,7 +10,7 @@ def method_0():
             print("tuples do not have " + list_attribute)
         else:
             print("tuples have " + list_attribute)
-
+# use code introspection function dir and sets.
 def method_1():
     empty_tuple = ()
     empty_list = []
@@ -25,13 +27,10 @@ def method_1():
             print("tuples do not have " + list_attribute)
         flag = False
 
+
 method_flag = 1
 
 if method_flag == 0:
     method_0()
-else :
+else:
     method_1()
-
-
-
-
