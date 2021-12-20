@@ -33,7 +33,7 @@ class User():
         self.display_info("reading message {}".format(msg.mid))
         if self.like(msg):
             msg.score += 1
-            # 
+            # A user is losing one point of satisfaction when reading her/his own message
             if self == msg.user:
                 self.satisfaction -= 1
             else:

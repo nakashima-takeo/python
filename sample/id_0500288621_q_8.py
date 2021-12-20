@@ -111,7 +111,7 @@ class SocialNetwork():
 
     def unregister_user(self, user):
         self.users.remove(user)
-        # remove messages posted by user
+        # remove messages posted by the user
         for msg in self.msgs:
             if msg.user == user:
                 self.msgs.remove(msg)

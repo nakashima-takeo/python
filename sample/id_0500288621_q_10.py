@@ -135,6 +135,7 @@ class SocialNetwork():
                     for msg in self.msgs:
                         if msg.score == 0:
                             self.delete_message(msg)
+                            print("Step {}: message {} deleted".format(self.step, msg.mid))
 
                 if self.step % 10 == 0:
                     self.report()
