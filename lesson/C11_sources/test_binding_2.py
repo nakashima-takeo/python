@@ -4,7 +4,7 @@ from tkinter.font import nametofont
 # Define callback function
 def return_callback(event):
     label1["text"] = entry1_value.get()
-    
+
 # Create the UI
 root = Tk()
 

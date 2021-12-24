@@ -14,21 +14,21 @@ class Application(Frame):
 
         increment_button = Button(self, text = "Increment", command = self.increment)
         increment_button.pack()
-        
+
         #Compact way to define the button
         #Button(self, text = "Reset", command = self.reset).pack()
-        
+
         # Alternative way to define the button
         reset_button = Button(self)
-        
+
         # Then set the "attributes"
-        reset_button["text"] = "Reset" 
-        
+        reset_button["text"] = "Reset"
+
         # Equivalent notations:
         # use dict style
         # reset_button["width"] = 10
         # Use config method
-        # reset_button.config(width = 10) 
+        # reset_button.config(width = 10)
 
         reset_button["command"] = self.reset
 
@@ -51,7 +51,7 @@ class Application(Frame):
         #self.label.config(text = str(self.counter))
 
 def main():
-    root = Tk()     
+    root = Tk()
     app = Application(root)
     app.mainloop()
     # The main_loop can be called from other tkinter
