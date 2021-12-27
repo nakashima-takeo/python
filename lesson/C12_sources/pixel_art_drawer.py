@@ -12,12 +12,12 @@ class Painter():
 
         self.display_info = display_info
 
-        self.canvas_width = canvas_width 
+        self.canvas_width = canvas_width
         self.canvas_height = canvas_height
         self.canvas_data = [
             [init_color for y in range(self.canvas_width)]
              for x in range(self.canvas_height)
-             ]  
+             ]
 
         self.cursor = init_x, init_y
 
@@ -84,10 +84,10 @@ class Painter():
                 y -=1
         else:
             print("Unknown move command:", choice)
-        
+
         if self.display_info:
             print(f"Change pencil position to {x}, {y}")
-        
+
         self.cursor = x, y
 
         self.ui.update_cursor()
@@ -101,7 +101,7 @@ class Painter():
             for y in range(self.canvas_width):
               self.updates_list.append((x,y,self.canvas_data[x][y]))
         self.has_updates = True
-        
+
     def get_update(self):
         self.has_updates = False
         return self.updates_list.copy()
@@ -121,7 +121,7 @@ class Painter():
             json_data = json.loads(fd.read())
         print(json_data)
 
-    
+
 #####################################################
 
 class ColorPanel(tk.Frame):
@@ -142,7 +142,7 @@ class ColorPanel(tk.Frame):
                 rowspan = 1, columnspan=1,
                 sticky=(tk.W, tk.E)
                 )
-        
+
         row_index += 1
         tk.Label(
             self
@@ -161,8 +161,8 @@ class ColorPanel(tk.Frame):
                 row=row_index, column=0,
                 rowspan = 1, columnspan=1,
                 sticky=tk.W
-                )        
-               
+                )
+
         for i in range(row_index):
             self.rowconfigure(i, weight=1)
         self.columnconfigure(0, weight=1)
@@ -228,7 +228,7 @@ class PadPanel(tk.Frame):
 
     def move(self, direction):
         self.painter.move_cursor(direction)
-               
+
     def paint(self):
         self.painter.paint()
 
@@ -249,21 +249,21 @@ class ControlPanel(tk.Frame):
                 rowspan = 1, columnspan=2,
                 sticky=(tk.W, tk.E)
                 )
-        
+
         tk.Label(
             self
             ).grid(
                 row=1, column=0,
                 rowspan = 1, columnspan=2
                 )
-        
+
         PadPanel(
             self, self.painter
             ).grid(
                 row=2, column=0,
                 rowspan = 1, columnspan=2
                 )
-    
+
         tk.Label(
             self
             ).grid(
@@ -282,7 +282,7 @@ class ControlPanel(tk.Frame):
             ).grid(
                 row=4, column=1,
                 rowspan = 1, columnspan=1
-                )    
+                )
 #####################################################
 
 class CanvasPanel(tk.Frame):
@@ -290,11 +290,11 @@ class CanvasPanel(tk.Frame):
         self, parent=None,
         painter=None
         ):
-        
+
         tk.Frame.__init__(self, parent, bg="black")
 
         self.painter = parent.painter
-        self.painter.set_UI(self)   
+        self.painter.set_UI(self)
 
         self.pixels = None
 
@@ -312,29 +312,29 @@ class CanvasPanel(tk.Frame):
         self.refresh()
 
     def create_ui(self):
-        
+
         canvas_width, canvas_height = self.painter.get_size()
-        
+
         self.pixels = [
             [
             tk.Frame(
                     self, width=32, height=24
-                    )    
+                    )
             for y in range(canvas_width)
             ]
             for x in range(canvas_height)
             ]
-        
+
         for i in range(canvas_height):
             self.rowconfigure(i, weight=1)
             for j in range(canvas_width):
-                self.columnconfigure(j, weight=1)                
+                self.columnconfigure(j, weight=1)
                 self.pixels[i][j].grid(
                     row=i, column=j,
                     rowspan=1, columnspan=1,
                     padx=1, pady=1,
                     sticky=(tk.N, tk.S, tk.W, tk.E))
-                
+
         tk.Checkbutton(
             self, text = "show cursor",
             variable= self.show_cursor
@@ -355,13 +355,13 @@ class CanvasPanel(tk.Frame):
                 self.is_overlaid = True
                 x, y = self.cursor
                 self.cursor_color = self.pixels[x][y]["bg"]
-                self.pixels[x][y]["bg"] = "#ff00ff" 
+                self.pixels[x][y]["bg"] = "#ff00ff"
                 self.after(100, self.cursor_blinking)
         else:
             if self.is_overlaid:
                 self.is_overlaid = False
                 x, y = self.cursor
-                self.pixels[x][y]["bg"] = self.cursor_color   
+                self.pixels[x][y]["bg"] = self.cursor_color
             self.after(500, self.cursor_blinking)
 
     def refresh(self):
@@ -372,7 +372,7 @@ class CanvasPanel(tk.Frame):
 
         for i, j, color in self.painter.get_update():
             self.pixels[i][j]["bg"] = color
-                
+
     def update_cursor(self):
         if self.is_overlaid:
             self.is_overlaid = False

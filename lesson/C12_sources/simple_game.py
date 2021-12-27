@@ -15,7 +15,7 @@ def new_button_callback():
     """
     # Use global variables as we want to assign values
     # that can be accessed from other part of the script
-    global goal, trial, is_playing 
+    global goal, trial, is_playing
     trial = 0
     goal = randint(0, width), randint(0, height)
     new_button["state"] = DISABLED
@@ -38,11 +38,11 @@ def mouse_callback(event):
     # Use a global variable as we want to assign a value
     # that can be accessed from other part of the script
     global trial
-    
+
     # We just check the value of is_playing
     # there is no local variable is_playing
     # the function will get the variable from the main unit
-    if not is_playing: 
+    if not is_playing:
         # Nothing happen if the game is not started
         return
 
@@ -63,7 +63,7 @@ def mouse_callback(event):
     # close enough to the goal
     if distance < threshold:
         info_label["text"] = "Trial(s): {}/{} You win".format(trial,
-         max_trials) 
+         max_trials)
         end_game()
 
     # Check if we reached the maximum number of trials
@@ -71,7 +71,7 @@ def mouse_callback(event):
         info_label["text"] = "Trial(s): {}/{} You lost".format(trial
         , max_trials)
         end_game()
-    
+
     # The game did not end
     # Give some feedback to the player
     # Draw a colored dot
@@ -81,7 +81,7 @@ def mouse_callback(event):
     # 3) the dot color is related to the distance to the goal
     # 4) the tag "feedback" is set
     bbox = (pos[0] - threshold, pos[1] - threshold, pos[0] + threshold,
-     pos[1] + threshold)  
+     pos[1] + threshold)
     canvas.create_oval(bbox, fill=get_color(distance), outline="",
      tags="feedback")
 
@@ -97,9 +97,9 @@ def distance_to_goal(pos):
 def get_color(d):
     """Returns a red color that is brighter as d is closer to 0
     """
-    # Get a color value from the distance d to the goal 
+    # Get a color value from the distance d to the goal
     # the distance is smaller than the diagonal of the canvas
-    # d <= sqrt(pow(width, 2) + pow(height, 2) 
+    # d <= sqrt(pow(width, 2) + pow(height, 2)
     # v will be in [0, 255]
     # Note that we have v = 255 when d = 0
     # So the dot is brighter when closer to the goal
