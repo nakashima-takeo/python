@@ -3,23 +3,23 @@ class TestException(Exception):
 def main():
     print("Block 1:")
     try:
-        print("Raise an exception") 
+        print("Raise an exception")
         raise TestException
-    except TestException: 
+    except TestException:
         print("Test exception happened")
     else:
         print("No exception")
     finally:
-        print("Done in any case")       
+        print("Done in any case")
 
     print("Block 2:")
     try:
-        print("Do not raise an exception") 
+        print("Do not raise an exception")
         pass
-    except TestException: 
+    except TestException:
         print("Test exception happened")
     else:
-        print("No exception")   
+        print("No exception")
     finally:
         print("Done in any case")
 

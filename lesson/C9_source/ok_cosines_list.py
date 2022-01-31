@@ -8,7 +8,7 @@ def get_x_list(start, end, step):
     number_steps = int((end - start) / step) + 1
 
     # Fill the values in an empty list
-    x_list = [] 
+    x_list = []
     for i in range(number_steps):
         x_list.append(start + i * step)
     return x_list
