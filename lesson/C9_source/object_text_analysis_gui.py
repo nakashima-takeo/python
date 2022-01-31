@@ -17,7 +17,7 @@ class TextAnalysisGUI():
 
         # Define a button to start the computation
         button_go = Button(master, text="go", command=self.analyze)
-    
+
         # To display results
         self.label_result = Label(master, text="")
 

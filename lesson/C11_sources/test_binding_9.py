@@ -9,7 +9,7 @@ class CounterLabel(Label):
         # to the superclass __init__
         # This is how we pass the relief information
         Label.__init__(self, master, **kwarg)
-        
+
         # This creates the text
         self.counter = start
         self.max_count = max_count
@@ -18,20 +18,20 @@ class CounterLabel(Label):
         # Bindings
         self.bind("<Button-1>", self.button_callback)
         self.bind_all("<Enter>", self.enter_callback)
-       
+
     def set_text(self):
         self["text"] = "{}/{}".format(self.counter, self.max_count)
 
     def enter_callback(self, event):
         event.widget.focus_set()
-        
+
     def button_callback(self, event):
         self.counter +=1
         if self.counter == self.max_count:
             self.quit()
         else:
             self.set_text()
-   
+
 
 # Create the UI
 root = Tk()

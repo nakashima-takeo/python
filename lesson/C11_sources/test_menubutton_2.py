@@ -78,11 +78,11 @@ class TestMenubutton(Menubutton):
 
 def main():
     root = Tk()
-    
+
     root.title("Test Menu")
 
     frame = Frame(root)
-    frame.pack()   
+    frame.pack()
 
     Canvas(frame, width = 400, height= 300, bg = "black").pack()
 

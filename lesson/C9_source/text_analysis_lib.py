@@ -14,7 +14,7 @@ def analyze_text(file_name, threshold):
     # Create a list of unique words
     # (remove duplicates)
     ##############################################
-    
+
     words_set = set(words_list)
     # remove the empty word from the list
     words_set.remove('')

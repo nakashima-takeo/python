@@ -17,7 +17,7 @@ text_font["size"] = 16
 root.title("Test Listbox")
 
 frame = Frame(root)
-frame.pack()   
+frame.pack()
 
 spinval1 = StringVar()
 sbox1 = Spinbox(frame, from_=1.0, to=10.0, textvariable=spinval1)
