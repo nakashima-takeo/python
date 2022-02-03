@@ -1,9 +1,9 @@
 from tkinter import Tk, Frame, Label, Button, filedialog
 
-# json file 
+# json file
 # To dump (write) a dictionary in json format in a string
 # To load (read) a dictionary from a string in json format
-import json 
+import json
 
 def load_json():
     global data_dict
@@ -12,17 +12,17 @@ def load_json():
     # returns the full path
     path = filedialog.askopenfilename(initialdir="/", title="Select json file",
         filetypes=(("json files", "*.json"),("all files", "*.*")))
-    
+
     try:
         with open(path, "r") as fd:
-            raw_data = fd.read() # read a json string 
+            raw_data = fd.read() # read a json string
 
         # json string to dictionary
-        data_dict = json.loads(raw_data) 
-    except FileNotFoundError: 
+        data_dict = json.loads(raw_data)
+    except FileNotFoundError:
         # If the user cancels the selection
         label["text"] = "Info: No file selected"
-    except Exception: 
+    except Exception:
         # If the user select a non valid json file or other error
         # For example: use all files and select an image
         label["text"] = "Info: Not a valid json file?"
@@ -33,24 +33,24 @@ def save_json():
     global data_dict
     if data_dict == None:
         label["text"] = "Info: No data to save yet"
-        return 
+        return
     else:
         # Opens a dialog to select a file to save to
         # ask confirmation if already exists
         # filetypes controls the possible file types that can be accessed
         # returns the full path
-        path = filedialog.asksaveasfilename(initialdir="/", 
+        path = filedialog.asksaveasfilename(initialdir="/",
         title="Save json file",
         filetypes=(("json files", "*.json"),))
-    
+
         try:
             with open(path, "w") as fd:
                 raw_data = json.dumps(data_dict)# dictionary to string
                 fd.write(raw_data) # write string in file
-        except FileNotFoundError: 
+        except FileNotFoundError:
             # If the user cancels the selection
             label["text"] = "Info: No file selected"
-        except Exception: 
+        except Exception:
             # If some data from the dict cannot be saved in json
             # unlikely in this script
             label["text"] = "Info: Not a valid json data?"
@@ -64,7 +64,7 @@ root = Tk()
 root.title("Test filedialog")
 
 frame = Frame(root)
-frame.pack()   
+frame.pack()
 
 label = Label(frame, text = "Info:", width=30)
 label.pack()

@@ -3,7 +3,7 @@ def analyze_text(file_name, threshold):
     # Open the file to read the text line by line
     # Create a list of words when reading the file
     ##############################################
-    
+
     words_list = []
     with open(file_name, 'r', encoding='utf-8') as fd:
         for line in fd:

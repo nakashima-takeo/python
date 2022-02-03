@@ -1,9 +1,9 @@
 from tkinter import Tk, Frame, Label, Button
-from tkinter.font import Font 
+from tkinter.font import Font
 
 class MyGUI(Frame):
     def __init__(self, master=None):
-        Frame.__init__(self, master)        
+        Frame.__init__(self, master)
         self.label = None
         self.create_widgets()
 
@@ -14,11 +14,11 @@ class MyGUI(Frame):
 
     def rand_color(self):
         from random import randint
-        return "#{:02x}{:02x}{:02x}".format(randint(0, 255), randint(0, 255), randint(0, 255))        
+        return "#{:02x}{:02x}{:02x}".format(randint(0, 255), randint(0, 255), randint(0, 255))
 
     def pick_color(self, title, color):
         from tkinter.colorchooser import askcolor
-        return askcolor(color, title=title)[1]    
+        return askcolor(color, title=title)[1]
 
     def create_widgets(self):
         font = Font(
@@ -26,7 +26,7 @@ class MyGUI(Frame):
             size = 36,
             weight = "bold"
             )
-        
+
         self.label = Label(
             self,
             text="Hello world!",
@@ -46,7 +46,7 @@ class MyGUI(Frame):
             width = 30,
             command = f1
         ).pack()
-        
+
         Button(
             self,
             text="pink_on_blue",
@@ -95,7 +95,7 @@ def main():
 
     MyGUI(frame).pack()
 
-    root.mainloop() 
+    root.mainloop()
 
 if __name__ == "__main__":
     main()

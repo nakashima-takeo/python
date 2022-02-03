@@ -7,12 +7,12 @@ class MovingColoredDot(Frame):
         Frame.__init__(self, master)
         self.width = width
         self.height = height
-        
+
         self.step = 5
 
         self.offset = (DoubleVar(None, self.width/2),
          DoubleVar(None, self.height/2))
-        
+
         self.canvas = None
         self.colored_circle = None
 
@@ -39,7 +39,7 @@ class MovingColoredDot(Frame):
         # Gives the focus to the instance of MovingColoredDot
         # that contains the canvas
         self.focus_set()
-    
+
     def keypress_callback(self, event):
         # Flag to check for movement
         trigger_move = True
@@ -85,7 +85,7 @@ class MovingColoredDot(Frame):
                 self.quit()
             else:
                 print("key '{}': not used".format(event.keysym))
-        
+
         if trigger_move:
             self.move(0)
             # We reuse the method made for the Scale command attribute
@@ -117,16 +117,16 @@ class MovingColoredDot(Frame):
 
         Scale(self, from_=0, to=self.height, variable= self.offset[1],
         command = self.move).grid(row=0,column=1, sticky=(W,E,S,N))
-        
+
     def move(self, value): # the value is not used as we use the DoubleVar
         self.canvas.coords(self.colored_circle, self.get_bbox())
-        self.update_idletasks()# Ask to process drawing events 
+        self.update_idletasks()# Ask to process drawing events
 
 root = Tk()
 root.title("Test Binding 3")
 
 frame = Frame(root)
-frame.grid()   
+frame.grid()
 
 MovingColoredDot(frame).grid()
 

@@ -34,4 +34,4 @@ Button(frame, text="pink_on_blue", width = 30, command = pink_on_blue).pack()
 Button(frame, text="random", width = 30, command = random_color).pack()
 Button(frame, text="reset", width = 30, command = reset_color).pack()
 
-root.mainloop() 
+root.mainloop()
