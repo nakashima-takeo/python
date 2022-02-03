@@ -29,6 +29,9 @@ class CanvasUI(Frame):
          command=lambda : self.feedback("shuffle")).pack(side=LEFT)
         Button(buttons_frame, text = "Reset",
          command=lambda : self.feedback("reset")).pack(side=RIGHT)
+        # add a 'color' button
+        Button(buttons_frame, text = "color",
+         command=lambda : self.feedback("color")).place(relx = 0.3)
 
     def random_color(self):
         return "#{:02x}{:02x}{:02x}".format(randint(0, 255), randint(0, 255),
@@ -54,11 +57,13 @@ class CanvasUI(Frame):
             if randint(1, 100) > 95:
                 c = self.random_color()
                 bbox = self.random_bounding_box(0.1)
-                self.canvas.create_oval(bbox, fill=c, outline=c)
+                # add a tag
+                self.canvas.create_oval(bbox, fill=c, outline=c, tag = "all-color")
             else:
                 c = self.random_gray()
                 bbox = self.random_bounding_box(0.2)
-                self.canvas.create_oval(bbox, fill=c, outline=c)
+                # add a tag
+                self.canvas.create_oval(bbox, fill=c, outline=c, tag = "gray")
 
     def shuffle(self):
         object_id_list = self.canvas.find_all()
@@ -71,6 +76,9 @@ class CanvasUI(Frame):
     def reset(self):
         self.canvas.delete("all")
 
+    # color function : This  bring color ovals in front of gray ovals
+    def color(self):
+            self.canvas.tag_raise("all-color")
 
     def feedback(self, choice):
         if choice == "add":
@@ -79,6 +87,9 @@ class CanvasUI(Frame):
             self.shuffle()
         elif choice == "reset" :
             self.reset()
+        # color function execute
+        elif choice == "color" :
+            self.color()
         else:
             pass
 

@@ -5,15 +5,15 @@ from random import randint
 
 class CanvasUI(Frame):
     def __init__(self, master=None, width = 400, height = 200, bg="white"):
-        
+
         Frame.__init__(self, master)
-        
+
         self.width = width
         self.height = height
         self.bg = bg
 
         self.canvas = None
-        
+
         self.create_ui()
 
     def random_point(self):
@@ -27,7 +27,7 @@ class CanvasUI(Frame):
             size = "small"
 
         bbox_top_left = self.random_point()
-        bbox_bottom_right = bbox_top_left[0] + width, bbox_top_left[1] + height 
+        bbox_bottom_right = bbox_top_left[0] + width, bbox_top_left[1] + height
         return bbox_top_left+bbox_bottom_right, size
 
     def create_ui(self):
@@ -48,7 +48,7 @@ class CanvasUI(Frame):
 
         Button(draw_frame, text = "draw rectangle",
          command=lambda : self.draw("rectangle")).pack(side=LEFT)
-       
+
         Button(delete_frame, text = "small in front",
          command=lambda : self.draw("small front")).pack(side=LEFT)
 
@@ -63,11 +63,11 @@ class CanvasUI(Frame):
             bbox, size = self.random_bounding_box()
             self.canvas.create_oval(bbox, fill="yellow", outline="black",
              width=3, tags=("oval", size))
-        
+
         elif choice == "rectangle":
             bbox, size = self.random_bounding_box()
             self.canvas.create_rectangle(bbox, fill="#f000f0", outline="black",
-             width=3, tags=("rectangle", size))        
+             width=3, tags=("rectangle", size))
 
         elif choice == "small front":
             try:
@@ -77,13 +77,13 @@ class CanvasUI(Frame):
 
         elif choice == "big front":
             try:
-                self.canvas.tag_raise("big", "small")                
+                self.canvas.tag_raise("big", "small")
             except TclError as e:
                 print(e)
 
         elif choice == "reset":
-            self.canvas.delete("all")        
-        
+            self.canvas.delete("all")
+
         else:
             print("Not implemented!")
 
@@ -93,9 +93,9 @@ class CanvasUI(Frame):
         for oid in object_id_list:
             print("object id {}\ttype: {}\ttags: {}".format(oid,
              self.canvas.type(oid), self.canvas.gettags(oid)))
-            
 
-    
+
+
 
 root = Tk()
 root.title("Test Canvas 2")

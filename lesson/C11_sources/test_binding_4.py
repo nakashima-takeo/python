@@ -7,11 +7,11 @@ class MovingColoredDot(Frame):
         Frame.__init__(self, master)
         self.width = width
         self.height = height
-        
+
         self.smoothing = IntVar(None, -2)
 
         self.offset = DoubleVar(None, self.width/2), DoubleVar(None, self.height/2)
-        
+
         self.canvas = None
         self.colored_circle = None
 
@@ -21,7 +21,7 @@ class MovingColoredDot(Frame):
         self.canvas.bind("<Motion>", self.motion_callback)
         self.canvas.bind("<Button>", self.button_callback)
 
-    
+
     def motion_callback(self, event):
         alpha = 10.0**self.smoothing.get()
         self.offset[0].set((1.0 - alpha) * self.offset[0].get()
@@ -34,7 +34,7 @@ class MovingColoredDot(Frame):
         if event.num == 1:
             self.canvas.create_oval(self.get_bbox(), fill=self.random_color(),
                                     tags="addedDot")
-            self.canvas.tag_raise(self.colored_circle, "addedDot")       
+            self.canvas.tag_raise(self.colored_circle, "addedDot")
         elif event.num == 3:
             self.canvas.delete("addedDot")
         else:
@@ -44,7 +44,7 @@ class MovingColoredDot(Frame):
         return "#{:02x}{:02x}{:02x}".format(randint(0, 255), randint(0, 255),
          randint(0, 255))
 
-    def get_bbox(self):# self.offset is changing with mouse movement 
+    def get_bbox(self):# self.offset is changing with mouse movement
         return (self.offset[0].get()-10, self.offset[1].get()-10,
          self.offset[0].get()+10, self.offset[1].get()+10)
 
@@ -61,16 +61,16 @@ class MovingColoredDot(Frame):
         Scale(self, from_=-3, to=0, resolution=1, tickinterval=1,
          orient=HORIZONTAL, variable= self.smoothing).grid(row=1, column=0,
          sticky=(W,E,S,N))
-        
+
     def move(self):
         self.canvas.coords(self.colored_circle, self.get_bbox())
-        self.update_idletasks()# Ask to process drawing events 
+        self.update_idletasks()# Ask to process drawing events
 
 root = Tk()
 root.title("Test Binding 3")
 
 frame = Frame(root)
-frame.grid()   
+frame.grid()
 
 MovingColoredDot(frame).grid()
 

@@ -29,6 +29,10 @@ class CanvasUI(Frame):
          command=lambda : self.feedback("shuffle")).pack(side=LEFT)
         Button(buttons_frame, text = "Reset",
          command=lambda : self.feedback("reset")).pack(side=RIGHT)
+    # random green
+    def random_green(self):
+        v = randint(0, 255)
+        return "#{:02x}{:02x}{:02x}".format(0, v, 0)
 
     def random_color(self):
         return "#{:02x}{:02x}{:02x}".format(randint(0, 255), randint(0, 255),
@@ -51,7 +55,14 @@ class CanvasUI(Frame):
 
     def draw(self):
         for i in range(randint(10, 50)):
-            if randint(1, 100) > 95:
+            # color chance
+            color_chance = randint(1, 100)
+            # green rectangle
+            if color_chance > 97:
+                c = self.random_green()
+                bbox = self.random_bounding_box(0.15)
+                self.canvas.create_rectangle(bbox, fill=c, outline=c)
+            elif color_chance > 92:
                 c = self.random_color()
                 bbox = self.random_bounding_box(0.1)
                 self.canvas.create_oval(bbox, fill=c, outline=c)
